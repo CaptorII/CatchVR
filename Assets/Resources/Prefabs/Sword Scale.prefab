@@ -114,6 +114,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f4fe8d829699b3478d5727e30950851, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lifeTime: 15
+  damageValue: -5
 --- !u!65 &1529001734197152789
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -121,7 +123,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7898365949408958070}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 0d0002235256b3948973ac32fccc0957, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2

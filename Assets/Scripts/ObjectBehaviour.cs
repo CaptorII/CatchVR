@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class ObjectBehaviour : MonoBehaviour
@@ -19,10 +18,10 @@ public class ObjectBehaviour : MonoBehaviour
         if (Time.time >= currentLife + lifeTime)
         {
             Destroy(gameObject);
-        }        
+        }
         if (transform.position.y < -1)
         {
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
     }
 
@@ -36,9 +35,9 @@ public class ObjectBehaviour : MonoBehaviour
         ScoreZone hitScoreZone = other.GetComponent<ScoreZone>();
         if (hitScoreZone != null)
         {
-            hitScoreZone.UpdateScore(damageValue);
+            hitScoreZone.UpdateHealth(damageValue);
             Destroy(gameObject);
-            Debug.Log(hitScoreZone.score);
+            Debug.Log(hitScoreZone.health);
         }
     }
 }

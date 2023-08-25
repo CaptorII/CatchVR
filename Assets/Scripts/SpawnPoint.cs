@@ -1,6 +1,4 @@
-using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class SpawnPoint : MonoBehaviour
@@ -23,13 +21,13 @@ public class SpawnPoint : MonoBehaviour
         {
             sword, axe, dagger
         };
-        potions = new List<GameObject>() 
-        { 
-            healingPotion 
-        };
-        types = new List<string>()
+        potions = new List<GameObject>()
         {
-            "weapons", "potions"
+            healingPotion
+        };
+        types = new List<string>() // weighted toward weapons
+        {
+            "weapons", "weapons", "weapons", "potions"
         };
         lastSpawn = Time.time;
     }
@@ -38,7 +36,7 @@ public class SpawnPoint : MonoBehaviour
     {
         if (Time.time >= lastSpawn)
         {
-            SpawnObject(types[Random.Range(0, 2)]);
+            SpawnObject(types[Random.Range(0, 4)]);
             lastSpawn = Time.time + spawnDelay;
         }
     }

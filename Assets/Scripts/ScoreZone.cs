@@ -1,17 +1,27 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ScoreZone : MonoBehaviour
 {
-    public int score = 100;
+    public int health = 100;
+    int healthMax = 100;
+    int healthMin = 0;
+
     private void OnTriggerEnter(Collider other)
     {
-        
+
     }
 
-    public void UpdateScore(int value)
+    public void UpdateHealth(int value)
     {
-        score += value;
+        health += value;
+        if (health > healthMax)
+        {
+            health = healthMax;
+        }
+        else if (health <= healthMin)
+        {
+            health = healthMin;
+            PauseControl.instance.GameOver();
+        }
     }
 }
