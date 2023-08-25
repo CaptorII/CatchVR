@@ -10,8 +10,8 @@ public class ScoreZone : MonoBehaviour
         
     }
 
-    public void UpdateScore()
+    public void UpdateScore(int value)
     {
-        score--;
+        score += value;
     }
 }

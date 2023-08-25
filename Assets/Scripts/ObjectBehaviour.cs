@@ -3,8 +3,11 @@ using UnityEngine;
 
 public class ObjectBehaviour : MonoBehaviour
 {
+    [SerializeField]
     float lifeTime = 15f;
     float currentLife;
+    [SerializeField]
+    int damageValue = -1;
 
     private void Start()
     {
@@ -33,8 +36,9 @@ public class ObjectBehaviour : MonoBehaviour
         ScoreZone hitScoreZone = other.GetComponent<ScoreZone>();
         if (hitScoreZone != null)
         {
-            hitScoreZone.UpdateScore();
+            hitScoreZone.UpdateScore(damageValue);
             Destroy(gameObject);
+            Debug.Log(hitScoreZone.score);
         }
     }
 }
