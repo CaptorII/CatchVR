@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 public class ScoreZone : MonoBehaviour
@@ -5,6 +6,8 @@ public class ScoreZone : MonoBehaviour
     public int health = 100;
     int healthMax = 100;
     int healthMin = 0;
+    [SerializeField]
+    TextMeshProUGUI healthLabel;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -23,5 +26,10 @@ public class ScoreZone : MonoBehaviour
             health = healthMin;
             PauseControl.instance.GameOver();
         }
+    }
+
+    public void UpdateHealthDisplay()
+    {
+        healthLabel.SetText("Health: " + health);
     }
 }

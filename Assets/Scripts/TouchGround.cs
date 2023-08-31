@@ -1,16 +1,19 @@
+using TMPro;
 using UnityEngine;
 
 public class TouchGround : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
+    public int score = 0;
+    [SerializeField]
+    TextMeshProUGUI scoreLabel;
 
+    public void UpdateScore(int scoreIncrease)
+    {
+        score += scoreIncrease;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void UpdateScoreDisplay()
     {
-
+        scoreLabel.SetText("Score: " + score.ToString());
     }
 }

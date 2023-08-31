@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PauseControl : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class PauseControl : MonoBehaviour
     public static PauseControl instance;
     bool paused = false;
     bool gameOver = false;
+    public UnityEvent death;
 
     void Awake()
     {
@@ -49,5 +51,6 @@ public class PauseControl : MonoBehaviour
     {
         gameOver = true;
         Time.timeScale = 0f;
+        death.Invoke();
     }
 }
