@@ -9,7 +9,7 @@ public class SpawnPoint : MonoBehaviour
     List<GameObject> weapons, potions;
     List<string> types;
     float lastSpawn;
-    float spawnDelay = 1f;
+    float spawnDelay = 2f;
 
     void Start()
     {
@@ -43,7 +43,7 @@ public class SpawnPoint : MonoBehaviour
 
     public void SpawnObject(string type)
     {
-        Vector3 spawnPos = new Vector3(transform.position.x + Random.value * 2.5f - 1.25f, transform.position.y, transform.position.z + Random.value * 2.5f - 1.25f);
+        Vector3 spawnPos = new Vector3(transform.position.x + Random.value * 1f - 0.5f, transform.position.y, transform.position.z + Random.value * 1f - 0.5f);
         if (type == "weapons")
         {
             Quaternion weaponRot = new Quaternion(transform.rotation.x, transform.rotation.y, transform.rotation.z + 180, transform.rotation.w);
