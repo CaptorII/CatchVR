@@ -1,0 +1,17 @@
+To implement:
+SFX sword hit
+SFX sword damage
+SFX potion heal
+wrist pause menu
+main menu buttons activate in VR
+difficulty option on main menu
+end menu option to restart level
+trigger for hitting object
+sound slider in options menu
+sound mixer controlling SFX
+
+Stretch goals:
+glass score zone, shatters on death
++ drop into under-level room with final score/menu on wall
+end menu option to change difficulty
+SFX menu clicks
