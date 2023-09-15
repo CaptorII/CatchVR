@@ -49,7 +49,7 @@ public class PauseControl : MonoBehaviour
 
     public void GameOver()
     {
-        gameOver = true;
+        gameOver = true;        
         Time.timeScale = 0f;
         death.Invoke();
     }

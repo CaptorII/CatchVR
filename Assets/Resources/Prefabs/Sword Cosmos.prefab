@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 6933490965371773991}
   - component: {fileID: -7222002524114765275}
   - component: {fileID: 5391322240656978853}
+  - component: {fileID: 9089474506996174827}
+  - component: {fileID: 1665992756485046250}
   m_Layer: 0
   m_Name: Sword Cosmos
   m_TagString: Untagged
@@ -114,3 +116,28 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 2
+--- !u!65 &9089474506996174827
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7620583520974107960}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.23278493, y: 1.2515774, z: 0.07688878}
+  m_Center: {x: 0, y: 0.45757183, z: 0}
+--- !u!114 &1665992756485046250
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7620583520974107960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f8b8cfadb56cad4d85a0db9983843aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

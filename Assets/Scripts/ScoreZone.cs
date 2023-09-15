@@ -8,6 +8,7 @@ public class ScoreZone : MonoBehaviour
     int healthMin = 0;
     [SerializeField]
     TextMeshProUGUI healthLabel;
+    AudioClip gameOverSound;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -24,6 +25,10 @@ public class ScoreZone : MonoBehaviour
         else if (health <= healthMin)
         {
             health = healthMin;
+            AudioSource source = GetComponent<AudioSource>();
+            gameOverSound = (AudioClip)Resources.Load("Audio/Crash");
+            source.clip = gameOverSound;
+            source.Play();
             PauseControl.instance.GameOver();
         }
     }
