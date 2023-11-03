@@ -12,6 +12,7 @@ public class MainMenu : MonoBehaviour
     public void Options()
     {
         optionsMenu.SetActive(true);
+        gameObject.SetActive(false);
     }
 
     public void QuitGame()

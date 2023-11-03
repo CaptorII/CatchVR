@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.XR;
 
 public class PauseControl : MonoBehaviour
 {
@@ -10,6 +11,10 @@ public class PauseControl : MonoBehaviour
     bool paused = false;
     bool gameOver = false;
     public UnityEvent death;
+    InputDevice leftController;
+    [SerializeField] GameObject pauseMenu;
+    bool menuButton = false;
+    bool menuButtonPrev = false;
 
     void Awake()
     {
@@ -22,21 +27,34 @@ public class PauseControl : MonoBehaviour
         DontDestroyOnLoad(gameObject); // prevents object being destroyed when next scene is entered
     }
 
+    private void Start()
+    {
+        leftController = InputDevices.GetDeviceAtXRNode(XRNode.LeftHand);
+    }
+
     void Update()
     {
         if (gameOver) { return; }
-        if (Input.GetKeyUp(KeyCode.Escape))
+        if (leftController == null || leftController.isValid == false)
+        {
+            List<InputDevice> devices = new List<InputDevice>();
+            InputDevices.GetDevicesWithCharacteristics(InputDeviceCharacteristics.Left | InputDeviceCharacteristics.Controller, devices);
+            if(devices.Count > 0)
+            {
+                leftController = devices[0];
+            }
+        }
+        menuButtonPrev = menuButton;
+        leftController.TryGetFeatureValue(CommonUsages.menuButton, out menuButton);
+        bool menuDown = !menuButtonPrev && menuButton;
+        bool menuUp = menuButtonPrev && !menuButton;
+
+        if (menuDown)
         {
             paused = !paused; // inverts paused, sets false if true or vice versa
-            if (paused)
-            {
-                Time.timeScale = 0f;
-            }
-            else
-            {
-                Time.timeScale = 1f;
-            }
-            pause?.Invoke(paused);
+            Time.timeScale = paused ?  0f : 1f; // freeze time if paused, resume if unpaused            
+            pause?.Invoke(paused); 
+            pauseMenu.SetActive(paused); // show or hide pause menu
         }
     }
 

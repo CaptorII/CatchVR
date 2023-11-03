@@ -8,7 +8,6 @@ public class PauseMenuControl : MonoBehaviour
     void Start()
     {
         PauseControl.instance.pause += Pause;
-        gameObject.SetActive(false);
     }
 
     public void Pause(bool paused)
@@ -19,6 +18,7 @@ public class PauseMenuControl : MonoBehaviour
     public void Options()
     {
         optionsMenu.SetActive(true);
+        gameObject.SetActive(false);
     }
 
     public void ReturnToMain()
