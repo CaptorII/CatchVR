@@ -6,6 +6,7 @@ public class TouchGround : MonoBehaviour
     public int score = 0;
     [SerializeField] int levelOneThreshold = 20;
     [SerializeField] int levelTwoThreshold = 50;
+    [SerializeField] float speedUpAmount = 0.8f;
     [SerializeField] TextMeshProUGUI scoreLabel;
 
     public void UpdateScore(int scoreIncrease)
@@ -18,6 +19,10 @@ public class TouchGround : MonoBehaviour
         if (score == levelTwoThreshold)
         {
             SpawnPoint.level += 1;
+        }
+        if (score % levelTwoThreshold == 0 && score != levelTwoThreshold) // at 100 points, then 150, 200 etc.
+        {
+            SpawnPoint.spawnDelay *= speedUpAmount; // reduce delay between things spawning to increase difficulty
         }
     }
 

@@ -356,6 +356,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   score: 0
+  levelOneThreshold: 20
+  levelTwoThreshold: 50
+  speedUpAmount: 0.8
   scoreLabel: {fileID: 0}
 --- !u!1 &3444437002096855809
 GameObject:

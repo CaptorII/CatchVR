@@ -10,7 +10,7 @@ public class SpawnPoint : MonoBehaviour
     List<GameObject> weapons, potions;
     List<string> types, unfairTypes;
     float lastSpawn;
-    float spawnDelay = 2f;
+    public static float spawnDelay = 2f;
 
     void Start()
     {

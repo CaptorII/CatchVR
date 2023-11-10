@@ -11,12 +11,16 @@ public class ObjectBehaviour : MonoBehaviour
     int damageValue = -1;
     int scoreValue = 1;
     AudioSource source;
+    [SerializeField]
+    bool usesQuickFalling = false;
+    Rigidbody rigidBody;
 
     private void Start()
     {
         currentLife = Time.time;
         source = GetComponent<AudioSource>();
         source.volume = 0.1f;
+        rigidBody = GetComponent<Rigidbody>();
     }
 
     private void Update()
@@ -31,14 +35,25 @@ public class ObjectBehaviour : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    void FixedUpdate()
+    {
+        if (usesQuickFalling) 
+        {
+            rigidBody.AddForce(5f * Physics.gravity, ForceMode.Acceleration); 
+        }
+    }
+
+private void OnTriggerEnter(Collider other)
     {
         SwordControl swordControl = other.GetComponent<SwordControl>();
         if (swordControl != null)
         {
             int swordSoundIndex = Random.Range(0, SwordControl.swordSounds.Count() - 1);
-            source.clip = (AudioClip)SwordControl.swordSounds[swordSoundIndex];
-            if (!source.isPlaying) source.Play();
+            if (!source.isPlaying)
+            {
+                source.clip = (AudioClip)SwordControl.swordSounds[swordSoundIndex];
+                source.Play();
+            }
         }
         TouchGround hitGround = other.GetComponent<TouchGround>();
         if (hitGround != null) // if object touches ground outside scorezone, increase score
