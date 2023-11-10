@@ -1,13 +1,14 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.ProBuilder.MeshOperations;
 
 public class SpawnPoint : MonoBehaviour
 {
-    public int level = 0;
+    public static int level = 0;
     GameObject sword, axe, dagger;
     GameObject healingPotion;
     List<GameObject> weapons, potions;
-    List<string> types;
+    List<string> types, unfairTypes;
     float lastSpawn;
     float spawnDelay = 2f;
 
@@ -29,6 +30,10 @@ public class SpawnPoint : MonoBehaviour
         {
             "weapons", "weapons", "weapons", "potions"
         };
+        unfairTypes = new List<string>() // VERY weighted toward weapons
+        {
+            "weapons", "weapons", "weapons", "weapons", "weapons", "weapons", "potions"
+        };
         lastSpawn = Time.time;
     }
 
@@ -36,8 +41,15 @@ public class SpawnPoint : MonoBehaviour
     {
         if (Time.time >= lastSpawn)
         {
-            SpawnObject(types[Random.Range(0, 4)]);
-            lastSpawn = Time.time + spawnDelay;
+            if (level >= 1)
+            {
+                SpawnObject(types[Random.Range(0, 4)]);
+            } 
+            else
+            {
+                SpawnObject(unfairTypes[Random.Range(0, 7)]); // in level 2, potions become much rarer
+            }
+            lastSpawn = Time.time + spawnDelay;            
         }
     }
 
