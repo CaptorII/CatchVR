@@ -10,10 +10,11 @@ public class SpawnPoint : MonoBehaviour
     List<GameObject> weapons, potions;
     List<string> types, unfairTypes;
     float lastSpawn;
-    public static float spawnDelay = 2f;
+    public static float spawnDelay;
 
     void Start()
     {
+        spawnDelay = 2f;
         sword = (GameObject)Resources.Load("Prefabs/Sword Scale");
         axe = (GameObject)Resources.Load("Prefabs/Axe Wood");
         dagger = (GameObject)Resources.Load("Prefabs/Dagger Metal");
