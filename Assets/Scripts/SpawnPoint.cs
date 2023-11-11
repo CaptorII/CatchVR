@@ -1,7 +1,10 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.ProBuilder.MeshOperations;
 
+/// <summary>
+/// SpawnPoint is a script on the spawn point that sits above players and handles instantiating weapons and potions.
+/// Rates of objects falling and which types of objects fall are set here.
+/// </summary>
 public class SpawnPoint : MonoBehaviour
 {
     public static int level = 0;
@@ -10,10 +13,11 @@ public class SpawnPoint : MonoBehaviour
     List<GameObject> weapons, potions;
     List<string> types, unfairTypes;
     float lastSpawn;
-    public static float spawnDelay = 2f;
+    public static float spawnDelay;
 
     void Start()
     {
+        spawnDelay = 2f;
         sword = (GameObject)Resources.Load("Prefabs/Sword Scale");
         axe = (GameObject)Resources.Load("Prefabs/Axe Wood");
         dagger = (GameObject)Resources.Load("Prefabs/Dagger Metal");

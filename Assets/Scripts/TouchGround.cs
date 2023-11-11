@@ -1,6 +1,10 @@
 using TMPro;
 using UnityEngine;
 
+/// <summary>
+/// TouchGround is a script on the ground around the score zone which controls score by increasing score whenever an object touches the ground.
+/// This script links to the UI to display score, and when score updates to certain points, increases the game's difficulty.
+/// </summary>
 public class TouchGround : MonoBehaviour
 {
     public int score = 0;
