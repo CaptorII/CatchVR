@@ -1,9 +1,11 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.XR;
 
+/// <summary>
+/// PauseControl handles pausing and unpausing the game through the menu button on the controller and the pause menu.
+/// </summary>
 public class PauseControl : MonoBehaviour
 {
     public event Delegates.VoidBoolDel pause;
@@ -35,7 +37,7 @@ public class PauseControl : MonoBehaviour
     void Update()
     {
         if (gameOver) { return; }
-        if (leftController == null || leftController.isValid == false)
+        if (leftController == null || leftController.isValid == false) // if controller is not yet detected, try again every frame
         {
             List<InputDevice> devices = new List<InputDevice>();
             InputDevices.GetDevicesWithCharacteristics(InputDeviceCharacteristics.Left | InputDeviceCharacteristics.Controller, devices);
@@ -44,11 +46,11 @@ public class PauseControl : MonoBehaviour
                 leftController = devices[0];
             }
         }
+        // if menu button is pressed, pause game
         menuButtonPrev = menuButton;
         leftController.TryGetFeatureValue(CommonUsages.menuButton, out menuButton);
         bool menuDown = !menuButtonPrev && menuButton;
         bool menuUp = menuButtonPrev && !menuButton;
-
         if (menuDown)
         {
             paused = !paused; // inverts paused, sets false if true or vice versa
@@ -58,7 +60,7 @@ public class PauseControl : MonoBehaviour
         }
     }
 
-    public void UnPause()
+    public void UnPause() // called by button on pause menu
     {
         paused = false;
         Time.timeScale = 1f;
