@@ -11,7 +11,6 @@ public class SpawnPoint : MonoBehaviour
     GameObject sword, axe, dagger;
     GameObject healingPotion;
     List<GameObject> weapons, potions;
-    List<string> types, unfairTypes;
     float lastSpawn;
     public static float spawnDelay;
 
@@ -30,14 +29,6 @@ public class SpawnPoint : MonoBehaviour
         {
             healingPotion
         };
-        types = new List<string>() // weighted toward weapons
-        {
-            "weapons", "weapons", "weapons", "potions"
-        };
-        unfairTypes = new List<string>() // VERY weighted toward weapons
-        {
-            "weapons", "weapons", "weapons", "weapons", "weapons", "weapons", "potions"
-        };
         lastSpawn = Time.time;
     }
 
@@ -45,24 +36,18 @@ public class SpawnPoint : MonoBehaviour
     {
         if (Time.time >= lastSpawn)
         {
-            if (level >= 1)
-            {
-                SpawnObject(types[Random.Range(0, 4)]);
-            } 
-            else
-            {
-                SpawnObject(unfairTypes[Random.Range(0, 7)]); // in level 2, potions become much rarer
-            }
+            SpawnObject();
             lastSpawn = Time.time + spawnDelay;            
         }
     }
 
-    public void SpawnObject(string type)
+    public void SpawnObject()
     {
         Vector3 spawnPos = new Vector3(transform.position.x + Random.value * 1f - 0.5f, transform.position.y, transform.position.z + Random.value * 1f - 0.5f);
-        if (type == "weapons")
+        Quaternion weaponRot = new Quaternion(transform.rotation.x, transform.rotation.y, transform.rotation.z + 180, transform.rotation.w);
+        float random = Random.value;
+        if (random < 0.75f)
         {
-            Quaternion weaponRot = new Quaternion(transform.rotation.x, transform.rotation.y, transform.rotation.z + 180, transform.rotation.w);
             if (level == 0)
             {
                 Instantiate(weapons[0], spawnPos, weaponRot); // only drop swords
@@ -76,9 +61,13 @@ public class SpawnPoint : MonoBehaviour
                 Instantiate(weapons[Random.Range(0, 3)], spawnPos, weaponRot); // drop any weapon
             }
         }
-        else if (type == "potions")
+        else if (random < 0.95f && level == 2)
         {
-            Instantiate(potions[Random.Range(0, 1)], spawnPos, transform.rotation);
+            Instantiate(weapons[Random.Range(0, 3)], spawnPos, weaponRot); // drop any weapon
+        }
+        else
+        {
+            Instantiate(potions[0], spawnPos, transform.rotation);
         }
     }
 }
