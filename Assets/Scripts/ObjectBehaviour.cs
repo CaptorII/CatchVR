@@ -6,8 +6,7 @@ using UnityEngine;
 /// </summary>
 public class ObjectBehaviour : MonoBehaviour
 {
-    [SerializeField] float lifeTime = 15f;
-    float currentLife;
+    public float lifeTime = 15f;
     [SerializeField] int damageValue = -1;
     int scoreValue = 1;
     AudioSource source;
@@ -16,22 +15,9 @@ public class ObjectBehaviour : MonoBehaviour
 
     private void Start()
     {
-        currentLife = Time.time;
         source = GetComponent<AudioSource>();
         source.volume = 0.1f;
         rigidBody = GetComponent<Rigidbody>();
-    }
-
-    private void Update()
-    {
-        if (Time.time >= currentLife + lifeTime) // delete object once it reaches time limit
-        {
-            Destroy(gameObject);
-        }
-        if (transform.position.y < -1) // delete object once it goes below the ground
-        {
-            Destroy(gameObject);
-        }
     }
 
     void FixedUpdate()
@@ -59,7 +45,7 @@ public class ObjectBehaviour : MonoBehaviour
         {
             hitGround.UpdateScore(scoreValue);
             hitGround.UpdateScoreDisplay();
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
         ScoreZone hitScoreZone = other.GetComponent<ScoreZone>();
         if (hitScoreZone != null) // if object lands in scorezone, increase or reduce health
@@ -76,7 +62,7 @@ public class ObjectBehaviour : MonoBehaviour
                 scoreSource.clip = SwordControl.damageSound; 
                 scoreSource.Play();
             }
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
 }

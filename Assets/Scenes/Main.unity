@@ -996,6 +996,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7393d353231c51f439beb7b5a5da5542, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  poolSize: 20
 --- !u!1 &249104064
 GameObject:
   m_ObjectHideFlags: 0
@@ -5847,16 +5848,6 @@ PrefabInstance:
       propertyPath: scoreLabel
       value: 
       objectReference: {fileID: 468710486}
-    - target: {fileID: 5374554571953922275, guid: 0998925911050904790e96d28685fd81,
-        type: 3}
-      propertyPath: levelOneThreshold
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 5374554571953922275, guid: 0998925911050904790e96d28685fd81,
-        type: 3}
-      propertyPath: levelTwoThreshold
-      value: 40
-      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1444737182440090283, guid: 0998925911050904790e96d28685fd81, type: 3}
     m_RemovedGameObjects: []
