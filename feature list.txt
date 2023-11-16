@@ -1,6 +1,0 @@
-Stretch goals:
-difficulty option on main menu
-glass score zone, shatters on death
-+ drop into under-level room with final score/menu on wall
-end menu option to change difficulty
-SFX menu clicks
